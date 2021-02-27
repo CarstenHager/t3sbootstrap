@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace T3SBS\T3sbootstrap\DataProcessing;
 
+use TYPO3\CMS\Core\Domain\Repository\PageRepository;
 /*
  * This file is part of the TYPO3 extension t3sbootstrap.
  *
@@ -64,7 +65,7 @@ class ConfigProcessor implements DataProcessorInterface
 		// flexible small columns
 		$currentPage = $frontendController->page;
 		$smallColumnsCurrent = (int)$currentPage['tx_t3sbootstrap_smallColumns'];
-		$pageRepository = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Domain\Repository\PageRepository::class);
+		$pageRepository = GeneralUtility::makeInstance(PageRepository::class);
 		$rootlinePage = $pageRepository->getPage($processedRecordVariables['homepageUid']);
 		$smallColumnsRootline = (int)$rootlinePage['tx_t3sbootstrap_smallColumns'];
 		$smallColumns = $smallColumnsCurrent ?: $smallColumnsRootline;

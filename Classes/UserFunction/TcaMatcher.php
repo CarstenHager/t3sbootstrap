@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace T3SBS\T3sbootstrap\UserFunction;
 
+use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 /*
  * This file is part of the TYPO3 extension t3sbootstrap.
  *
@@ -223,7 +224,7 @@ class TcaMatcher
 	public function animateCss($arguments): bool
 	{
 		$animateCss = false;
-		$extconf = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Configuration\ExtensionConfiguration::class)->get('t3sbootstrap');
+		$extconf = GeneralUtility::makeInstance(ExtensionConfiguration::class)->get('t3sbootstrap');
 		if ( $extconf['animateCss'] ) {
 			$animateCss = true;
 		}

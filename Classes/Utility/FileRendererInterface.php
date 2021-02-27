@@ -1,6 +1,7 @@
 <?php
 namespace T3SBS\T3sbootstrap\Utility;
 
+use TYPO3\CMS\Core\SingletonInterface;
 /*
  * This file is part of the TYPO3 CMS project.
  *
@@ -19,7 +20,7 @@ use TYPO3\CMS\Core\Resource\FileInterface;
 /**
  * Class FileRendererInterface
  */
-interface FileRendererInterface extends \TYPO3\CMS\Core\SingletonInterface {
+interface FileRendererInterface extends SingletonInterface {
 
 	/**
 	 * Returns the priority of the renderer

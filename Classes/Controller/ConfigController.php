@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace T3SBS\T3sbootstrap\Controller;
 
+use T3SBS\T3sbootstrap\Domain\Repository\ConfigRepository;
+use T3SBS\T3sbootstrap\Domain\Model\Config;
 /*
  * This file is part of the TYPO3 extension t3sbootstrap.
  *
@@ -94,7 +96,7 @@ class ConfigController extends ActionController
 	 *
 	 * @param \T3SBS\T3sbootstrap\Domain\Repository\ConfigRepository $configRepository
 	 */
-	public function injectConfigRepository(\T3SBS\T3sbootstrap\Domain\Repository\ConfigRepository $configRepository)
+	public function injectConfigRepository(ConfigRepository $configRepository)
 	{
 		$this->configRepository = $configRepository;
 	}
@@ -197,7 +199,7 @@ class ConfigController extends ActionController
 			}
 
 		} else {
-			$newConfig = new \T3SBS\T3sbootstrap\Domain\Model\Config();
+			$newConfig = new Config();
 			// some defaults
 			$newConfig = self::setDefaults($newConfig);
 			$assignedOptions['newConfig'] = $newConfig;
@@ -213,7 +215,7 @@ class ConfigController extends ActionController
 	 * @param \T3SBS\T3sbootstrap\Domain\Model\Config $newConfig
 	 * @return void
 	 */
-	public function createAction(\T3SBS\T3sbootstrap\Domain\Model\Config $newConfig): void
+	public function createAction(Config $newConfig): void
 	{
 		$newConfig->setHomepageUid($this->rootPageId);
 		$newConfig->setPid($this->currentUid);
@@ -231,7 +233,7 @@ class ConfigController extends ActionController
 	 * @param bool $updated
 	 * @return void
 	 */
-	public function editAction(\T3SBS\T3sbootstrap\Domain\Model\Config $config, $updated = FALSE): void
+	public function editAction(Config $config, $updated = FALSE): void
 	{
 		$assignedOptions = self::getFieldsOptions();
 		$assignedOptions['config'] = $config;
@@ -256,7 +258,7 @@ class ConfigController extends ActionController
 	 * @param \T3SBS\T3sbootstrap\Domain\Model\Config $config
 	 * @return void
 	 */
-	public function updateAction(\T3SBS\T3sbootstrap\Domain\Model\Config $config): void
+	public function updateAction(Config $config): void
 	{
 		$config->setHomepageUid($this->rootPageId);
 		$this->configRepository->update($config);
@@ -272,7 +274,7 @@ class ConfigController extends ActionController
 	 * @param \T3SBS\T3sbootstrap\Domain\Model\Config $config
 	 * @return void
 	 */
-	public function deleteAction(\T3SBS\T3sbootstrap\Domain\Model\Config $config): void
+	public function deleteAction(Config $config): void
 	{
 		$this->configRepository->remove($config);
 		self::writeConstants();
@@ -365,9 +367,9 @@ class ConfigController extends ActionController
 	* @param \T3SBS\T3sbootstrap\Domain\Model\Config $rootConfig
 	* @return \T3SBS\T3sbootstrap\Domain\Model\Config $newConfig
 	*/
-	public function getNewConfig(\T3SBS\T3sbootstrap\Domain\Model\Config $rootConfig): \T3SBS\T3sbootstrap\Domain\Model\Config
+	public function getNewConfig(Config $rootConfig): Config
 	{
-		$newConfig = new \T3SBS\T3sbootstrap\Domain\Model\Config();
+		$newConfig = new Config();
 
 		foreach ( $this->tcaColumns as $field=>$columns ) {
 			$var = str_replace(' ', '_', $field);
@@ -387,7 +389,7 @@ class ConfigController extends ActionController
 	 * @param \T3SBS\T3sbootstrap\Domain\Model\Config $config
 	 * @return array
 	 */
-	protected function compareConfig(\T3SBS\T3sbootstrap\Domain\Model\Config $config): array
+	protected function compareConfig(Config $config): array
 	{
 		$compare = [];
 
@@ -631,7 +633,7 @@ class ConfigController extends ActionController
 	 * @param bool $isRoot
 	 * @return string
 	 */
-	 private function getConstants(\T3SBS\T3sbootstrap\Domain\Model\Config $config, $isRoot): string
+	 private function getConstants(Config $config, $isRoot): string
 	 {
 		$constants = 'bootstrap.config.uid = '.$config->getUid() .PHP_EOL;
 
@@ -793,7 +795,7 @@ class ConfigController extends ActionController
 	* @param \T3SBS\T3sbootstrap\Domain\Model\Config $newConfig
 	* @return \T3SBS\T3sbootstrap\Domain\Model\Config $newConfig
 	 */
-	protected function setDefaults($newConfig): \T3SBS\T3sbootstrap\Domain\Model\Config
+	protected function setDefaults($newConfig): Config
 	{
 		$newConfig->setHomepageUid($this->currentUid);
 		$newConfig->setPageTitle( 'jumbotron' );

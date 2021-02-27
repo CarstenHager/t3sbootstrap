@@ -94,7 +94,7 @@ class t3sbGridUpdateWizard implements UpgradeWizardInterface
 		$connectionPool = GeneralUtility::makeInstance(ConnectionPool::class);
 		$queryBuilder = $connectionPool->getQueryBuilderForTable('tt_content');
 		$queryBuilder->getRestrictions()->removeAll()
-		->add(GeneralUtility::makeInstance(\TYPO3\CMS\Core\Database\Query\Restriction\DeletedRestriction::class));
+		->add(GeneralUtility::makeInstance(DeletedRestriction::class));
 		$allGridelements = $queryBuilder
 			->select('*')
 			->from('tt_content')
@@ -115,7 +115,7 @@ class t3sbGridUpdateWizard implements UpgradeWizardInterface
 
 				$queryBuilder = $connectionPool->getQueryBuilderForTable('tt_content');
 				$queryBuilder->getRestrictions()->removeAll()
-				->add(GeneralUtility::makeInstance(\TYPO3\CMS\Core\Database\Query\Restriction\DeletedRestriction::class));
+				->add(GeneralUtility::makeInstance(DeletedRestriction::class));
 
 				$statement = $queryBuilder
 					->select('tx_gridelements_backend_layout')
@@ -210,7 +210,7 @@ class t3sbGridUpdateWizard implements UpgradeWizardInterface
 
 				$queryBuilder = $connectionPool->getQueryBuilderForTable('tt_content');
 				$queryBuilder->getRestrictions()->removeAll()
-				->add(GeneralUtility::makeInstance(\TYPO3\CMS\Core\Database\Query\Restriction\DeletedRestriction::class));
+				->add(GeneralUtility::makeInstance(DeletedRestriction::class));
 
 				$children = $queryBuilder
 					->select('*')

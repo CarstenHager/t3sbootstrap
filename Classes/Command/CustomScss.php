@@ -217,7 +217,7 @@ if ( $settings['rollyourown'] ) {
 			}
 
 			# clean typo3temp/var/cache/data/ws_scss/
-			if ( \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('ws_scss') ) {
+			if ( ExtensionManagementUtility::isLoaded('ws_scss') ) {
 				$tempDir = 'typo3temp/var/cache/data/ws_scss/';
 			} else {
 				$tempDir = '';

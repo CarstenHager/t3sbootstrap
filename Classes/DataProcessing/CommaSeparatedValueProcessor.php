@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace T3SBS\T3sbootstrap\DataProcessing;
 
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 /*
  * This file is part of the TYPO3 extension t3sbootstrap.
  *
@@ -66,7 +67,7 @@ $croppedTable = [];
 
 if (is_array($processedData['table'])) {
 	foreach ($processedData['table'] as $key=>$table) {
-		if ( \TYPO3\CMS\Core\Utility\GeneralUtility::isFirstPartOfStr($table[count($table)-1], 'ç') ) {
+		if ( GeneralUtility::isFirstPartOfStr($table[count($table)-1], 'ç') ) {
 			$tableClass = TRUE;
 			break;
 		} else {
