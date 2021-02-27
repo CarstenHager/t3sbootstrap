@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace T3SBS\T3sbootstrap\Controller;
 
+use Psr\Http\Message\ResponseInterface;
 /*
  * This file is part of the TYPO3 extension t3sbootstrap.
  *
@@ -26,7 +27,7 @@ class ConsentController extends ActionController
 	 *
 	 * @return void
 	 */
-	public function indexAction(): void
+	public function indexAction(): ResponseInterface
 	{
 		$currentRecord = $this->configurationManager->getContentObject()->data['uid'];
 
@@ -65,6 +66,7 @@ class ConsentController extends ActionController
 			'thumbnail' => $thumbnails[0],
 		];
 		$this->view->assignMultiple($assignedValues);
+		return $this->htmlResponse();
 	}
 
 
@@ -73,7 +75,7 @@ class ConsentController extends ActionController
 	 *
 	 * @return void
 	 */
-	public function ajaxAction(): void
+	public function ajaxAction(): ResponseInterface
 	{
 		$post = GeneralUtility::_POST();
 		$currentRecord = $post['currentRecord'];
@@ -81,5 +83,6 @@ class ConsentController extends ActionController
 			$cookieExpire = $this->settings['cookieExpire'] ? (int)$this->settings['cookieExpire'] : 30;
 			setcookie('contentconsent_'.$currentRecord, 'allow', time() + (86400 * $cookieExpire), '/');
 		}
+		return $this->htmlResponse();
 	}
 }

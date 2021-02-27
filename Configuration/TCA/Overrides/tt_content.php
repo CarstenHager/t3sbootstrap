@@ -5,7 +5,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use B13\Container\Tca\Registry;
 use B13\Container\Tca\ContainerConfiguration;
-defined('TYPO3_MODE') or die();
+defined('TYPO3') or die();
 
  # if typoscript_rendering is loaded
 if ( ExtensionManagementUtility::isLoaded('typoscript_rendering') ) {

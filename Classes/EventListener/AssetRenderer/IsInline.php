@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace T3SBS\T3sbootstrap\EventListener\AssetRenderer;
 
+use TYPO3\CMS\Core\Http\ApplicationType;
 /*
  * This file is part of the TYPO3 extension t3sbootstrap.
  *
@@ -20,7 +21,7 @@ class IsInline
 	public function __invoke(BeforeJavaScriptsRenderingEvent $event): void
 	{
 
-		if (TYPO3_MODE === 'BE') {
+		if (ApplicationType::fromRequest($GLOBALS['TYPO3_REQUEST'])->isBackend()) {
 			return;
 		}
 

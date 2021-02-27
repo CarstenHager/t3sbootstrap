@@ -3,6 +3,7 @@
 namespace T3SBS\T3sbootstrap\ViewHelpers;
 
 
+use TYPO3\CMS\Core\Http\ApplicationType;
 /*
  * This file is part of the TYPO3 extension t3sbootstrap.
  *
@@ -55,7 +56,7 @@ class IncludeFileViewHelper extends AbstractViewHelper
 		$path = $arguments['path'];
 		$compress = (bool)$arguments['compress'];
 		$pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
-		if (TYPO3_MODE === 'FE') {
+		if (ApplicationType::fromRequest($GLOBALS['TYPO3_REQUEST'])->isFrontend()) {
 			$path = GeneralUtility::makeInstance(FilePathSanitizer::class)->sanitize($path);
 
 			// JS

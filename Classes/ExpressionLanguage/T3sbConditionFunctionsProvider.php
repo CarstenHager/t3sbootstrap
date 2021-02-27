@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace T3SBS\T3sbootstrap\ExpressionLanguage;
 
+use TYPO3\CMS\Core\Http\ApplicationType;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
@@ -74,7 +75,7 @@ class T3sbConditionFunctionsProvider implements ExpressionFunctionProviderInterf
 
 			$result = FALSE;
 
-			if ( $_GET['id'] && TYPO3_MODE == 'BE' ) {
+			if ( $_GET['id'] && ApplicationType::fromRequest($GLOBALS['TYPO3_REQUEST'])->isBackend() ) {
 
 				$pid = (int)$_GET['id'];
 				$objectManager = GeneralUtility::makeInstance(ObjectManager::class);

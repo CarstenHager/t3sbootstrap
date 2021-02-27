@@ -16,7 +16,7 @@ use TYPO3\CMS\Core\Core\Environment;
 use T3SBS\T3sbootstrap\Hooks\PageLayoutView\CardPreviewRenderer;
 use T3SBS\T3sbootstrap\Updates\t3sbConstantsUpdateWizard;
 use T3SBS\T3sbootstrap\Updates\t3sbGridUpdateWizard;
-defined('TYPO3_MODE') or die();
+defined('TYPO3') or die();
 
 call_user_func(function () {
 

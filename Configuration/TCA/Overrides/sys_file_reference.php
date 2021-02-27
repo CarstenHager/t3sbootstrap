@@ -2,7 +2,7 @@
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
-defined('TYPO3_MODE') or die();
+defined('TYPO3') or die();
 
 
 # Extension configuration

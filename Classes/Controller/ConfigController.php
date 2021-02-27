@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace T3SBS\T3sbootstrap\Controller;
 
+use Psr\Http\Message\ResponseInterface;
 use T3SBS\T3sbootstrap\Domain\Repository\ConfigRepository;
 use T3SBS\T3sbootstrap\Domain\Model\Config;
 /*
@@ -122,7 +123,7 @@ class ConfigController extends ActionController
 	 * @param bool $updateSss
 	 * @return void
 	 */
-	public function listAction($deleted = FALSE, $created = FALSE, $updateSss = FALSE): void
+	public function listAction($deleted = FALSE, $created = FALSE, $updateSss = FALSE): ResponseInterface
 	{
 		if ( $this->isSiteroot ) {
 		 	$queryGenerator = GeneralUtility::makeInstance(QueryGenerator::class);
@@ -167,6 +168,7 @@ class ConfigController extends ActionController
 		}
 
 		$this->view->assignMultiple($assignedOptions);
+		return $this->htmlResponse();
 	}
 
 
@@ -175,7 +177,7 @@ class ConfigController extends ActionController
 	 *
 	 * @return void
 	 */
-	public function newAction(): void
+	public function newAction(): ResponseInterface
 	{
 		$assignedOptions = self::getFieldsOptions();
 		$assignedOptions['pid'] = $this->currentUid;
@@ -206,6 +208,7 @@ class ConfigController extends ActionController
 		}
 
 		$this->view->assignMultiple($assignedOptions);
+		return $this->htmlResponse();
 	}
 
 
@@ -215,7 +218,7 @@ class ConfigController extends ActionController
 	 * @param \T3SBS\T3sbootstrap\Domain\Model\Config $newConfig
 	 * @return void
 	 */
-	public function createAction(Config $newConfig): void
+	public function createAction(Config $newConfig): ResponseInterface
 	{
 		$newConfig->setHomepageUid($this->rootPageId);
 		$newConfig->setPid($this->currentUid);
@@ -223,6 +226,7 @@ class ConfigController extends ActionController
 		self::writeConstants();
 
 		parent::redirect('list',NULL,Null,array('created' => TRUE));
+		return $this->htmlResponse();
 	}
 
 
@@ -233,7 +237,7 @@ class ConfigController extends ActionController
 	 * @param bool $updated
 	 * @return void
 	 */
-	public function editAction(Config $config, $updated = FALSE): void
+	public function editAction(Config $config, $updated = FALSE): ResponseInterface
 	{
 		$assignedOptions = self::getFieldsOptions();
 		$assignedOptions['config'] = $config;
@@ -249,6 +253,7 @@ class ConfigController extends ActionController
 		}
 
 		$this->view->assignMultiple($assignedOptions);
+		return $this->htmlResponse();
 	}
 
 
@@ -258,13 +263,14 @@ class ConfigController extends ActionController
 	 * @param \T3SBS\T3sbootstrap\Domain\Model\Config $config
 	 * @return void
 	 */
-	public function updateAction(Config $config): void
+	public function updateAction(Config $config): ResponseInterface
 	{
 		$config->setHomepageUid($this->rootPageId);
 		$this->configRepository->update($config);
 		self::writeConstants();
 
 		parent::redirect('edit',NULL,Null,array('config' => $config, 'updated' => TRUE));
+		return $this->htmlResponse();
 	}
 
 
@@ -274,12 +280,13 @@ class ConfigController extends ActionController
 	 * @param \T3SBS\T3sbootstrap\Domain\Model\Config $config
 	 * @return void
 	 */
-	public function deleteAction(Config $config): void
+	public function deleteAction(Config $config): ResponseInterface
 	{
 		$this->configRepository->remove($config);
 		self::writeConstants();
 
 		parent::redirect('list',NULL,Null,array('deleted' => TRUE));
+		return $this->htmlResponse();
 	}
 
 
@@ -288,7 +295,7 @@ class ConfigController extends ActionController
 	 *
 	 * @return void
 	 */
-	public function dashboardAction(): void
+	public function dashboardAction(): ResponseInterface
 	{
 		if ( $this->isSiteroot ) {
 			$assignedOptions['extconf'] = GeneralUtility::makeInstance(ExtensionConfiguration::class)->get('t3sbootstrap');
@@ -300,6 +307,7 @@ class ConfigController extends ActionController
 		$assignedOptions['admin'] = $this->isAdmin;
 
 		$this->view->assignMultiple($assignedOptions);
+		return $this->htmlResponse();
 	}
 
 
@@ -308,7 +316,7 @@ class ConfigController extends ActionController
 	 *
 	 * @return void
 	 */
-	public function constantsAction(): void
+	public function constantsAction(): ResponseInterface
 	{
 		if ( $this->isSiteroot ) {
 			$constantPath = GeneralUtility::getFileAbsFileName('fileadmin/T3SB/Configuration/TypoScript/t3sbconstants.typoscript');
@@ -332,6 +340,7 @@ class ConfigController extends ActionController
 		$assignedOptions['admin'] = $this->isAdmin;
 
 		$this->view->assignMultiple($assignedOptions);
+		return $this->htmlResponse();
 	}
 
 
