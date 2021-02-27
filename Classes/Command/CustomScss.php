@@ -259,7 +259,7 @@ if ( $settings['rollyourown'] ) {
 			$customContent = $name == '_variables' ? '// Overrides Bootstrap variables' :  '// Your own SCSS';
 
 			if ( $settings['bootswatch'] ) {
-				$customContent = GeneralUtility::getURL($settings['bootswatchURL'].strtolower($settings['bootswatch']).'/'.$name.'.scss');
+				$customContent = @file_get_contents($settings['bootswatchURL'].strtolower($settings['bootswatch']).'/'.$name.'.scss');
 				if ($name == '_variables') {
 					$customContent = str_replace(' !default', '', $customContent);
 				}
