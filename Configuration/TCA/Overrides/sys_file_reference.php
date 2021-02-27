@@ -97,7 +97,7 @@ $tempSysFileReferenceColumns = [
 			'type' => 'check',
 				'items' => [
 				'1' => [
-					'0' => 'LLL:EXT:lang/Resources/Private/Language/locallang_core.xlf:labels.enabled'
+					'0' => 'LLL:EXT:core/Resources/Private/Language/locallang_core.xlf:labels.enabled'
 				]
 			]
 		]
@@ -176,7 +176,7 @@ $tempSysFileReferenceColumns = [
 			'type' => 'check',
 				'items' => [
 				'1' => [
-					'0' => 'LLL:EXT:lang/Resources/Private/Language/locallang_core.xlf:labels.enabled'
+					'0' => 'LLL:EXT:core/Resources/Private/Language/locallang_core.xlf:labels.enabled'
 				]
 			]
 		]
