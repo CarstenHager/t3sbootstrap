@@ -1,4 +1,5 @@
 <?php
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 defined('TYPO3_MODE') or die();
 
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile('t3sbootstrap', 'Configuration/TypoScript', 'Bootstrap Components');
+ExtensionManagementUtility::addStaticFile('t3sbootstrap', 'Configuration/TypoScript', 'Bootstrap Components');

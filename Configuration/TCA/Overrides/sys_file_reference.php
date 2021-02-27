@@ -1,9 +1,12 @@
 <?php
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 defined('TYPO3_MODE') or die();
 
 
 # Extension configuration
-$extconf = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Configuration\ExtensionConfiguration::class)->get('t3sbootstrap');
+$extconf = GeneralUtility::makeInstance(ExtensionConfiguration::class)->get('t3sbootstrap');
 
 /**
  * Add extra field tx_t3sbootstrap_extra_class etc. to sys_file_reference record
@@ -185,36 +188,36 @@ $tempSysFileReferenceColumns = [
 ];
 
 
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('sys_file_reference',$tempSysFileReferenceColumns);
+ExtensionManagementUtility::addTCAcolumns('sys_file_reference',$tempSysFileReferenceColumns);
 unset($tempSysFileReferenceColumns);
 
 
-TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addFieldsToPalette('sys_file_reference', 'imageoverlayPalette','--linebreak--,tx_t3sbootstrap_description_align','after:title');
+ExtensionManagementUtility::addFieldsToPalette('sys_file_reference', 'imageoverlayPalette','--linebreak--,tx_t3sbootstrap_description_align','after:title');
 
-TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addFieldsToPalette('sys_file_reference', 'imageoverlayPalette','--linebreak--,tx_t3sbootstrap_extra_class','after:tx_t3sbootstrap_description_align');
+ExtensionManagementUtility::addFieldsToPalette('sys_file_reference', 'imageoverlayPalette','--linebreak--,tx_t3sbootstrap_extra_class','after:tx_t3sbootstrap_description_align');
 
-TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addFieldsToPalette('sys_file_reference', 'imageoverlayPalette','--linebreak--,tx_t3sbootstrap_extra_imgclass','after:tx_t3sbootstrap_extra_class');
+ExtensionManagementUtility::addFieldsToPalette('sys_file_reference', 'imageoverlayPalette','--linebreak--,tx_t3sbootstrap_extra_imgclass','after:tx_t3sbootstrap_extra_class');
 
 if (array_key_exists('imgCopyright', $extconf) && $extconf['imgCopyright']) {
-	TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addFieldsToPalette('sys_file_reference', 'imageoverlayPalette','--linebreak--,tx_t3sbootstrap_copyright','after:tx_t3sbootstrap_extra_imgclass');
+	ExtensionManagementUtility::addFieldsToPalette('sys_file_reference', 'imageoverlayPalette','--linebreak--,tx_t3sbootstrap_copyright','after:tx_t3sbootstrap_extra_imgclass');
 
-	TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addFieldsToPalette('sys_file_reference', 'imageoverlayPalette','--linebreak--,tx_t3sbootstrap_copyright_color','after:tx_t3sbootstrap_copyright');
+	ExtensionManagementUtility::addFieldsToPalette('sys_file_reference', 'imageoverlayPalette','--linebreak--,tx_t3sbootstrap_copyright_color','after:tx_t3sbootstrap_copyright');
 
 	if (array_key_exists('imgCopyright', $extconf) && $extconf['imgCopyright'] === '2') {
-		TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addFieldsToPalette('sys_file_reference', 'imageoverlayPalette','--linebreak--,tx_t3sbootstrap_copyright_source','after:tx_t3sbootstrap_copyright_color');
+		ExtensionManagementUtility::addFieldsToPalette('sys_file_reference', 'imageoverlayPalette','--linebreak--,tx_t3sbootstrap_copyright_source','after:tx_t3sbootstrap_copyright_color');
 
 	}
 }
 
 if (array_key_exists('linkHoverEffect', $extconf) && $extconf['linkHoverEffect'] === '1') {
-	TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addFieldsToPalette('sys_file_reference', 'imageoverlayPalette','--linebreak--,tx_t3sbootstrap_hover_effect','after:tx_t3sbootstrap_extra_imgclass');
+	ExtensionManagementUtility::addFieldsToPalette('sys_file_reference', 'imageoverlayPalette','--linebreak--,tx_t3sbootstrap_hover_effect','after:tx_t3sbootstrap_extra_imgclass');
 }
 
 if (array_key_exists('lazyLoad', $extconf) && $extconf['lazyLoad'] === '2') {
-	TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addFieldsToPalette('sys_file_reference', 'imageoverlayPalette','--linebreak--,tx_t3sbootstrap_lazy_load','after:tx_t3sbootstrap_extra_imgclass');
+	ExtensionManagementUtility::addFieldsToPalette('sys_file_reference', 'imageoverlayPalette','--linebreak--,tx_t3sbootstrap_lazy_load','after:tx_t3sbootstrap_extra_imgclass');
 }
 
 if (array_key_exists('imgtag', $extconf) && $extconf['imgtag']) {
-	TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addFieldsToPalette('sys_file_reference', 'imageoverlayPalette','--linebreak--,tx_t3sbootstrap_imgtag','after:tx_t3sbootstrap_description_align');
+	ExtensionManagementUtility::addFieldsToPalette('sys_file_reference', 'imageoverlayPalette','--linebreak--,tx_t3sbootstrap_imgtag','after:tx_t3sbootstrap_description_align');
 }
 
